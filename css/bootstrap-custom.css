@@ -21,6 +21,20 @@ h1{
     text-align: center;
 }
 
+.column {
+  margin-left: 25px;
+  float: left;
+  background-color: gray;
+  
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
