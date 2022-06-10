@@ -27,7 +27,7 @@ alter table TAusleihen auto_increment = 1000;
 drop table if exists TKunden;
 create table TKunden (
 	KunNummer int unsigned primary key auto_increment,
-    KunAnrede enum('Herr', 'Frau', 'Divers'),
+    KunAnrede enum('Herr', 'Frau'),
     KunVorname varchar(40) not null,
     KunNachname varchar(40) not null,
     KunStrasse varchar(50) not null,
