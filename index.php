@@ -45,9 +45,20 @@
             </ul>
         </nav>
         <br>
-        <div class="row">
-            <div class="column">Vorname</div>
-            <div class="column">Nachname</div>
+        <div class="datatable">
+            <?php
+            foreach($result as $row) {
+            ?>
+            <tr>
+            <td><?php echo $row->Account; ?></td>
+            <td><?php echo $row->Username; ?></td>
+            <td><?php echo $row->Password; ?></td>
+            <td><?php echo $row->Created; ?></td>
+            <td><?php echo $row->Strength; ?></td>
+            </tr>
+    
+}
+
         </div>
         <?php
         error_reporting(0);
