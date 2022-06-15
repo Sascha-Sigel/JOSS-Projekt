@@ -47,17 +47,26 @@
         <br>
         <div class="datatable">
             <?php
-            foreach($result as $row) {
+                $arr = array(0 => "Jeannine", 1 =>"Ziegler");
             ?>
-            <tr>
-            <td><?php echo $row->Account; ?></td>
-            <td><?php echo $row->Username; ?></td>
-            <td><?php echo $row->Password; ?></td>
-            <td><?php echo $row->Created; ?></td>
-            <td><?php echo $row->Strength; ?></td>
-            </tr>
-    
-}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <?php foreach ($arr as $value) { ?>
+                            <td> <?php echo $value ?> </td>
+                    </tr>
+                <?php } 
+                //https://tubemint.com/php-foreach-loop-in-html-table-working/
+                ?>
+                </tbody>
+            </table>
 
         </div>
         <?php
