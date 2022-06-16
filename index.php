@@ -45,9 +45,29 @@
             </ul>
         </nav>
         <br>
-        <div class="row">
-            <div class="column">Vorname</div>
-            <div class="column">Nachname</div>
+        <div class="datatable">
+            <?php
+                $arr = array(0 => "Jeannine", 1 =>"Ziegler");
+            ?>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <?php foreach ($arr as $value) { ?>
+                            <td> <?php echo $value ?> </td>
+                    </tr>
+                <?php } 
+                //https://tubemint.com/php-foreach-loop-in-html-table-working/
+                ?>
+                </tbody>
+            </table>
+
         </div>
         <?php
         error_reporting(0);
