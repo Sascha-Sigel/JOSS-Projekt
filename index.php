@@ -39,15 +39,15 @@
         <hr>
         <nav>
             <ul>
-                <li><a href="index.php">Kunden</a></li>
-                <li><a href="news.asp">Videos</a></li>
-                <li><a href="contact.asp">Ausleihen</a></li>
+                <li><a class="active" href="index.php">Kunden</a></li>
+                <li><a href="videos.php">Videos</a></li>
+                <li><a href="ausleihen.php">Ausleihen</a></li>
             </ul>
         </nav>
         <br>
         <div class="datatable">
             <?php
-                $arr = array(0 => "Jeannine", 1 =>"Ziegler");
+            $arr = array(0 => "Jeannine", 1 => "Ziegler");
             ?>
             <table>
                 <thead>
@@ -56,38 +56,106 @@
                         <th>Nachname</th>
                     </tr>
                 </thead>
-
-                <tbody>
-                    <tr>
-                        <?php foreach ($arr as $value) { ?>
-                            <td> <?php echo $value ?> </td>
-                    </tr>
-                <?php } 
+                <?php
                 //https://tubemint.com/php-foreach-loop-in-html-table-working/
                 ?>
-                </tbody>
             </table>
 
         </div>
         <?php
         error_reporting(0);
         ?>
-        <form name="selbst" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+        <div class="vl"></div>
+        <div class="kunde">
             <table>
                 <tr>
                     <td>
-
-
+                        <label for="anrede">Anrede</label>
+                    </td>
+                    <td>
+                        <select name="anrede" id="anrede" required>
+                            <option value="Frau">Frau</option>
+                            <option value="Herr">Herr</option>
+                            <option value=""></option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
                     <td>
+                        <label for="vn">Vorname</label>
 
                     </td>
+                    <td>
+                        <input type="text" class="form-control" id="vn" name="vn" value="" required>
+                    </td>
                 </tr>
+                <tr>
+                    <td>
+                        <label for="nn">Nachname</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="nn" name="nn" value="" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="str">Strasse</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="str" name="str" value="" required>
+                    </td>
+                    <td>
+                        <label for="nr">HausNr.</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="nr" name="nr" value="" required>
+                    </td>
 
+                </tr>
+                <tr>
+                    <td>
+                        <label for="ort">Ort</label>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" id="ort" name="ort" value="" required>
+                    </td>
+                    <td>
+                        <label for="plz">PLZ</label>
+                    </td>
+                    <td>
+                        <input type="number" class="form-control" id="plz" name="plz" value="" required>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label for="eM">E-Mail</label>
+                    </td>
+                    <td>
+                        <input type="email" class="form-control" id="eM" name="eM" value="" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="datum">Geburtsdatum</label>
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" id="datum" name="datum" value="" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="tele">Telefon</label>
+                    </td>
+                    <td>
+                        <input type="phone" class="form-control" id="tele" name="tele" value="" required>
+                    </td>
+                </tr>
             </table>
-            <br>
+        </div>
+        <br>
+        <hr>
+    </div>
 
     </div>
 

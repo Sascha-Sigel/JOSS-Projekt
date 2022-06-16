@@ -9,6 +9,18 @@ body{
     background-color:ghostwhite;
 }
 
+header{
+  font-family:Georgia, 'Times New Roman', Times, cursive;
+  font-size: 110px;
+  text-align: center;
+}
+
+p{
+
+  font-family: Verdana, Geneva, Tahoma, cursive;
+  font-size: 30px;
+  text-align: center;
+}
 .container {
     max-width: 100%;
     margin-left: auto;
@@ -17,8 +29,32 @@ body{
     background-color: ghostwhite;
 }
 
+.active{
+  background-color: darkgray;
+}
+
 h1{
     text-align: center;
+}
+
+.datatable{
+  position: relative;
+  left: 0%;
+  width: 50%;
+  margin-left: 15px;
+}
+.vl{
+  border-left: groove;
+  height: 400px;
+  position: absolute;
+  left: 30%;
+  top: 1;
+}
+
+.kunde{
+  position: relative;
+  left: 35%;
+  width: 70%;
 }
 
 ul {
@@ -26,7 +62,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: lightgray;
+  background-color: gainsboro;
 }
 
 li {
@@ -42,7 +78,7 @@ li a {
 }
 
 li a:hover {
-  background-color: lightslategray;
+  background-color: lightgray;
   text-decoration: none;
   color: black;
 }
@@ -51,9 +87,12 @@ input {
     display: block
 }
 
+label{
+  margin: 10px;
+}
 
 table{
-    width:100%;
+  width:50%;
 }
 
 
