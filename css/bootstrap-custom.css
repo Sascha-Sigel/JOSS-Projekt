@@ -46,17 +46,16 @@ h1{
   margin-left: 15px;
 }
 .vl{
-  border-left: groove;
-  height: 400px;
+  border-left: groove #333;
+  height: 800px;
   position: absolute;
   left: 30%;
   top: 1;
 }
 
 .kunde{
-  float: top;
-  position: relative;
-  left: 35%;  
+  position: absolute;
+  left: 33%;  
   width: 65%;
 }
 
@@ -104,6 +103,12 @@ table{
   width:65%;
 }
 
+hr{
+  border: none;
+    height: 1px;
+    color: #333; 
+    background-color: #333; 
+}
 
 
 

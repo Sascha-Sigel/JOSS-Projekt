@@ -49,67 +49,44 @@
         </nav>
         <br>
         <div class="datatable">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                    </tr>
-                </thead>
-                <?php
-                $student_names = ["Liam", "Noah", "Oliver", "Mai", "William", "Olivia", "Emma", "Ava", "Sophia", "Elijah", "Isabella"];
- 
-                $i = 0;
-                for($i = 1; $i <= count($student_names); $i++) { ?>
-                    <tr>
-                    <td><?php echo $i; ?></td>
-                    <td><?php echo $student_names[$i-1] ?></td>
-                    </tr>
-                    <?php } 
-                //https://tubemint.com/php-foreach-loop-in-html-table-working/
-                ?>
-            </table>
-
+        
         </div>
-        <?php
-        error_reporting(0);
-        ?>
         <div class="vl"></div>
         <div class="icon">
-                <table>
-                    <tr>
-                        <td>
-                            <div onclick="">
-                                <i class="material-icons" style="font-size:48px;">person_add</i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="material-icons" style="font-size:40px">&nbspdelete</i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="material-icons" style="font-size:38px">&nbspborder_color</i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <i class="material-icons" style="font-size:40px">&nbspnot_interested</i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <br>
-                            <i class="material-icons" style="font-size:45px">&nbspdone</i>
-                        </td>
-                    </tr>
-                </table>
+            <table>
+                <tr>
+                    <td>
+                        <div onclick="myFunction()">
+                            <i class="material-icons" style="font-size:48px;" name="add">person_add</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="material-icons" style="font-size:40px">&nbspdelete</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="material-icons" style="font-size:38px">&nbspborder_color</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="material-icons" style="font-size:40px">&nbspnot_interested</i>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <i class="material-icons" style="font-size:45px">&nbspdone</i>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="kunde">
             <table>
@@ -197,10 +174,10 @@
                     </td>
                 </tr>
             </table>
+            <br>
+            <hr>
         </div>
 
-        <br>
-        <hr>
     </div>
 
     </div>
