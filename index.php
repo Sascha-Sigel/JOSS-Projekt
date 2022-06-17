@@ -29,6 +29,9 @@
     <meta content="#2d89ef" name="msapplication-TileColor">
     <meta content="favicons/browserconfig.xml" name="msapplication-config">
     <meta content="#ffffff" name="theme-color">
+    <title>Google Icons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -46,9 +49,6 @@
         </nav>
         <br>
         <div class="datatable">
-            <?php
-            $arr = array(0 => "Jeannine", 1 => "Ziegler");
-            ?>
             <table>
                 <thead>
                     <tr>
@@ -57,6 +57,15 @@
                     </tr>
                 </thead>
                 <?php
+                $student_names = ["Liam", "Noah", "Oliver", "Mai", "William", "Olivia", "Emma", "Ava", "Sophia", "Elijah", "Isabella"];
+ 
+                $i = 0;
+                for($i = 1; $i <= count($student_names); $i++) { ?>
+                    <tr>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $student_names[$i-1] ?></td>
+                    </tr>
+                    <?php } 
                 //https://tubemint.com/php-foreach-loop-in-html-table-working/
                 ?>
             </table>
@@ -66,6 +75,42 @@
         error_reporting(0);
         ?>
         <div class="vl"></div>
+        <div class="icon">
+                <table>
+                    <tr>
+                        <td>
+                            <div onclick="">
+                                <i class="material-icons" style="font-size:48px;">person_add</i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="material-icons" style="font-size:40px">&nbspdelete</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="material-icons" style="font-size:38px">&nbspborder_color</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="material-icons" style="font-size:40px">&nbspnot_interested</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <i class="material-icons" style="font-size:45px">&nbspdone</i>
+                        </td>
+                    </tr>
+                </table>
+        </div>
         <div class="kunde">
             <table>
                 <tr>
@@ -153,6 +198,7 @@
                 </tr>
             </table>
         </div>
+
         <br>
         <hr>
     </div>

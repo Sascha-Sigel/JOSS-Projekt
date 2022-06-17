@@ -40,7 +40,7 @@
         <nav>
             <ul>
                 <li><a href="index.php">Kunden</a></li>
-                <li><a href="videos.php">Videos</a></li>
+                <li><a class="active" href="videos.php">Videos</a></li>
                 <li><a href="ausleihen.php">Ausleihen</a></li>
             </ul>
         </nav>

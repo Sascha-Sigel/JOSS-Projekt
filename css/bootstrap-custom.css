@@ -38,6 +38,8 @@ h1{
 }
 
 .datatable{
+  clear: both;
+  float: left;
   position: relative;
   left: 0%;
   width: 50%;
@@ -52,9 +54,16 @@ h1{
 }
 
 .kunde{
+  float: top;
   position: relative;
-  left: 35%;
-  width: 70%;
+  left: 35%;  
+  width: 65%;
+}
+
+.icon{
+  position:relative;
+  float: right;
+  width: 20%;
 }
 
 ul {
@@ -92,8 +101,9 @@ label{
 }
 
 table{
-  width:50%;
+  width:65%;
 }
+
 
 
 
