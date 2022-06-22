@@ -9,27 +9,6 @@ require_once "config.php";
             echo "<br>";
         }
     }
-
-$kunNummer = 1000;
-
-
-
-//Abfrage nach Kundennummer
-$sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
-    $result = $link->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            $kunAnrede = $row['KunAnrede'];
-            $kunVorname = $row['KunVorname'];
-            $kunNachname = $row['KunNachname'];
-            $kunStrasse = $row['KunStrasse'];
-            $kunGebDatum = $row['KunGebDatum'];
-            $kunTelefon = $row['KunTelefon'];
-            $ortONRP = $row['OrtONRP'];
-        }
-    }
-
 ?>
 <!doctype html>
 
@@ -40,7 +19,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     <!-- Meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta content="Bootstrap V4.6.0 Template fÃ¼r IMS Frauenfeld" name="description">
+    <meta content="Bootstrap V4.6.0 Template für IMS Frauenfeld" name="description">
     <meta content="Jean-Pierre Mouret" name="author">
 
     <!-- Title -->
@@ -62,6 +41,8 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     <meta content="#2d89ef" name="msapplication-TileColor">
     <meta content="favicons/browserconfig.xml" name="msapplication-config">
     <meta content="#ffffff" name="theme-color">
+
+    <script type="text/javascript" src="database.js"></script>
 
 </head>
 
@@ -91,17 +72,6 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                 </thead>
                 <?php
                 //https://tubemint.com/php-foreach-loop-in-html-table-working/
-                    $sql = "SELECT * FROM TKunden";
-                    $result = $link->query($sql);
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                            echo "  <tr>
-                                        <th>" . $row['KunVorname'] . "</th>
-                                        <th>" . $row['KunNachname'] . "</th>
-                                    </tr>";
-                        }
-                    }
                 ?>
             </table>
 
@@ -130,7 +100,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
 
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required>
+                        <input type="text" class="form-control" id="vn" name="vn" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -138,7 +108,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="nn">Nachname</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required>
+                        <input type="text" class="form-control" id="nn" name="nn" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -146,13 +116,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="str">Strasse</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required>
+                        <input type="text" class="form-control" id="str" name="str" value="" required>
                     </td>
                     <td>
                         <label for="nr">HausNr.</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="nr" name="nr" value="<?php echo "" ?>" required>
+                        <input type="text" class="form-control" id="nr" name="nr" value="" required>
                     </td>
 
                 </tr>
@@ -161,13 +131,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="ort">Ort</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required>
+                        <input type="text" class="form-control" id="ort" name="ort" value="" required>
                     </td>
                     <td>
                         <label for="plz">PLZ</label>
                     </td>
                     <td>
-                        <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required>
+                        <input type="number" class="form-control" id="plz" name="plz" value="" required>
                     </td>
 
                 </tr>
@@ -176,7 +146,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="eM">E-Mail</label>
                     </td>
                     <td>
-                        <input type="email" class="form-control" id="eM" name="eM" value="<?php echo "" ?>" required>
+                        <input type="email" class="form-control" id="eM" name="eM" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -184,7 +154,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="datum">Geburtsdatum</label>
                     </td>
                     <td>
-                        <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required>
+                        <input type="date" class="form-control" id="datum" name="datum" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -192,13 +162,14 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="tele">Telefon</label>
                     </td>
                     <td>
-                        <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required>
+                        <input type="phone" class="form-control" id="tele" name="tele" value="" required>
                     </td>
                 </tr>
             </table>
-            <button onclick="con.connect()">Click me</button>
+            <button onclick="selectAll()">Click me</button>
             <div id='test'>
             </div>
+
         </div>
         <br>
         <hr>
