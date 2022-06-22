@@ -11,7 +11,9 @@ require_once "config.php";
     }
 
 $kunNummer = 1000;
-
+if (isset($_GET['kunNummer'])){
+    $kunNummer = $_GET['kunNummer'];
+}
 
 
 //Abfrage nach Kundennummer
@@ -89,6 +91,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <th>Nachname</th>
                     </tr>
                 </thead>
+                <tbody>
                 <?php
                 //https://tubemint.com/php-foreach-loop-in-html-table-working/
                     $sql = "SELECT * FROM TKunden";
@@ -97,12 +100,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         // output data of each row
                         while($row = $result->fetch_assoc()) {
                             echo "  <tr>
-                                        <th>" . $row['KunVorname'] . "</th>
-                                        <th>" . $row['KunNachname'] . "</th>
+                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunVorname'] . "</a></td>
+                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunNachname'] . "</a></td>
                                     </tr>";
                         }
                     }
                 ?>
+                </tbody>
             </table>
 
         </div>

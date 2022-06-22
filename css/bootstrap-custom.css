@@ -95,6 +95,16 @@ table{
   width:50%;
 }
 
+tr:hover {
+    background: grey;
+}
+
+td a {
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+}
+
 
 
 
