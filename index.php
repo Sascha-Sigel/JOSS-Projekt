@@ -53,39 +53,46 @@
         </div>
         <div class="vl"></div>
         <div class="icon">
-        <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
+            <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
                 <tr>
                     <td>
+                        <br>
                         <div onclick="myFunction()">
-                            <i class="fa-solid fa-user-plus fa-2xl"></i>
-                            <br>
+                            <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
+
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                    <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                        <div onclick="myFunction()">
+                            <br>
+                            <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="material-icons" style="font-size:38px">&nbspborder_color</i>
+                        <div onclick="myFunction()">
+                            <br>
+                            <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="material-icons" style="font-size:40px">&nbspnot_interested</i>
+                        <div onclick="myFunction()">
+                            <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <i class="material-icons" style="font-size:45px">&nbspdone</i>
+                        <div onclick="myFunction()">
+                            <br>
+                            <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
+                        </div>
                     </td>
                 </tr>
             </table>
