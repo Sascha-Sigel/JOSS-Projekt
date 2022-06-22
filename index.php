@@ -58,7 +58,7 @@
                 <tr>
                     <td>
                         <br>
-                        <div onclick="myFunction()">
+                        <div onclick="addUser()">
                             <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
 
                         </div>
@@ -66,7 +66,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div onclick="myFunction()">
+                        <div onclick="editUser()">
                             <br>
                             <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
                         </div>
@@ -74,7 +74,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <div onclick="myFunction()">
+                        <div onclick="deleteUser()">
                             <br>
                             <i class="fa-solid fa-user-large-slash fa-2xl"></i>
                         </div>
@@ -82,14 +82,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <div onclick="myFunction()">
+                        <div onclick="dismiss()">
                             <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div onclick="myFunction()">
+                        <div onclick="done()">
                             <br>
                             <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
                         </div>
@@ -97,6 +97,25 @@
                 </tr>
             </table>
         </div>
+        <?php
+            error_reporting();
+            function addUser(){
+
+            }
+            function editUser(){
+
+            }
+            function deleteUser(){
+
+            }
+            function dismiss(){
+
+            }
+            function done(){
+
+            }
+
+        ?>
         <div class="kunde">
             <table>
                 <tr>
