@@ -53,17 +53,19 @@
         </div>
         <div class="vl"></div>
         <div class="icon">
+        <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
                 <tr>
                     <td>
                         <div onclick="myFunction()">
-                            <i class="material-icons" style="font-size:48px;" name="add">person_add</i>
+                            <i class="fa-solid fa-user-plus fa-2xl"></i>
+                            <br>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <i class="material-icons" style="font-size:40px">&nbspdelete</i>
+                    <i class="fa-solid fa-user-large-slash fa-2xl"></i>
                     </td>
                 </tr>
                 <tr>
