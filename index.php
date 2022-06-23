@@ -259,9 +259,41 @@ if (isset($_GET['kunNummer'])) {
                 </table>
                 <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
-            <hr>
         </div>
-        <br>
+        <div class="hl"></div>
+        <div class="videos">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Video Name</th>
+                        <th>Videonummer</th>
+                        <th>Ausleihdatum</th>
+                        <th>Rückgabedatum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if (isset($_GET["kunNummer"])) {
+                        
+                        $sql = "select v.VidTitel, v.VidNummer, a.AusVon, a.AusBis from TKunden k, TVideos v, TAusleihen a where k.KunNummer = a.KunNummer and a.VidNummer = v.VidNummer and k.KunNummer = ". $_GET["kunNummer"] . ";";
+                        $result = $link->query($sql);
+                        
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while ($row = $result->fetch_assoc()) {
+                                echo "  <tr>
+                                            <td>". $row["VidTitel"] . "</td>
+                                            <td>". $row["VidNummer"] . "</td>
+                                            <td>". $row["AusVon"] . "</td>
+                                            <td>". $row["AusBis"] . "</td>
+                                        </tr>";
+                            }
+                        }
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
     </div>
 

@@ -57,16 +57,43 @@ h1{
 }
 .vl{
   border-left: groove #333;
-  height: 800px;
+  height: 400px;
   position: absolute;
   left: 30%;
   top: 1;
+}
+
+.hl{
+  clear: both;
+  float: bottom;
+  border-top: groove #333;
+  width: 100%;
+  position: absolute;
+  top: 90%;
 }
 
 .kunde{
   position: absolute;
   left: 33%; 
   
+}
+
+.videos{
+  position: relative;
+  width: 60%;
+  left: 20%;
+  top: 0%;
+  margin-top: 450px;
+}
+
+.videos th{
+  background-color: lightgray;
+  border: solid black; 
+  padding-left: 5px;
+}
+
+.videos td{
+  border: solid black;
 }
 
 .icon{
