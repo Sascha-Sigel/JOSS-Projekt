@@ -42,8 +42,18 @@ h1{
   float: left;
   position: relative;
   left: 0%;
-  width: 50%;
   margin-left: 15px;
+  width: 25%;
+}
+
+.datatable th{
+  background-color: lightgray;
+  border: solid black; 
+  padding-left: 5px;
+}
+
+.datatable td{
+  border: solid black; 
 }
 .vl{
   border-left: groove #333;
@@ -55,14 +65,14 @@ h1{
 
 .kunde{
   position: absolute;
-  left: 33%;  
-  width: 65%;
+  left: 33%; 
+  
 }
 
 .icon{
   position:relative;
   float: right;
-  width: 20%;
+  
 }
 
 ul {
@@ -100,7 +110,7 @@ label{
 }
 
 table{
-  width:65%;
+  width:100%;
 }
 
 hr{
@@ -110,13 +120,13 @@ hr{
     background-color: #333; 
 }
 
-tr:hover {
+.datatable tr:hover {
     background: lightgrey;
 }
 
 td a {
     display: block;
-    padding: 16px;
+    padding: 10px;
     color: black;
 }
 

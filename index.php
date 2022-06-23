@@ -259,8 +259,8 @@ if (isset($_GET['kunNummer'])) {
                 </table>
                 <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
+            <hr>
         </div>
-
         <br>
 
     </div>
