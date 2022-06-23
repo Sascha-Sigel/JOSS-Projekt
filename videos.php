@@ -40,13 +40,13 @@
         <nav>
             <ul>
                 <li><a href="index.php">Kunden</a></li>
-                <li><a href="videos.php">Videos</a></li>
+                <li><a class="active" href="videos.php">Videos</a></li>
                 <li><a href="ausleihen.php">Ausleihen</a></li>
             </ul>
         </nav>
         <br>
         <div class="constraction">
-            <header>Coming soon...</header>
+            <header>404 Error</header>
             <p>This part of the website is under constraction.</p>
         </div>
     </div>
