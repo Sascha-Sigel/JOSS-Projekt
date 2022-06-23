@@ -1,14 +1,5 @@
 <?php
 require_once "config.php";
-$sql = "SELECT * FROM TKunden";
-$result = $link->query($sql);
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        //print_r($row);
-        //echo "<br>";
-    }
-}
 
 if (isset($_GET['kunNummer'])) {
     //Kunde Anzeigen
@@ -23,27 +14,76 @@ if (isset($_GET['kunNummer'])) {
             $kunVorname = $row['KunVorname'];
             $kunNachname = $row['KunNachname'];
             $kunStrasse = $row['KunStrasse'];
+            $kunHausnummer = $row['KunHausnummer'];
+            $kunEmail = $row['KunEMail'];
             $kunGebDatum = $row['KunGebDatum'];
             $kunTelefon = $row['KunTelefon'];
             $ortONRP = $row['OrtONRP'];
         }
     }
-} else if (isset($_POST['kundeAnlegen'])) {
+} else if (isset($_POST['kunInsert'])) {
     // Kunde Anlegen
-    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunGebDatum, KunTelefon, OrtONRP)
-                      VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $_POST['plz'] . ")";
+    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
+                      VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $_POST['plz'] . ")";
+
+    if ($link->query($sql) === TRUE) {
+        $last_id = $link->insert_id;
+        echo $last_id;
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
+    }
+
+} else if (isset($_POST['kunUpdate'])) {
+    // Kunde Update
+    $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $_POST['plz'] . "' WHERE KunNummer=" . $_POST['id'] ."";
+
+    if ($link->query($sql) === TRUE) {
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id']);
+    }
+
+} else if (isset($_GET['kunLoeschen'])) {
+    echo "loeaschen";
+    header('Location: ' . $_SERVER['PHP_SELF'] . '?kunLeer=');
+     $sql = "DELETE FROM TKunden WHERE KunNummer=" . $_GET['kunLoeschen'] . ";";
     mysqli_query($link, $sql);
-    echo $_POST['anrede'] . "," . $_POST['vn'] . "," . $_POST['nn'] . "," . $_POST['str'] . "," . $_POST['datum'] . "," . $_POST['tele'] . "," . $_POST['plz'];
-} else {
-    // Weder Noch
+
+} else if (isset($_POST['kunEdit'])){
+    $kunNummer = $_POST['id'];
+    $kunAnrede = $_POST['anrede'];
+    $kunVorname = $_POST['vn'];
+    $kunNachname = $_POST['nn'];
+    $kunStrasse = $_POST['str'];
+    $kunHausnummer = $_POST['nr'];
+    $kunEmail = $_POST['eM'];
+    $kunGebDatum = $_POST['datum'];
+    $kunTelefon = $_POST['tele'];
+    $ortONRP = $_POST['plz'];
+
+} else if (isset($_GET['kunAdd'])){
     $kunNummer = "";
     $kunAnrede = "";
     $kunVorname = "";
     $kunNachname = "";
     $kunStrasse = "";
+    $kunHausnummer = "";
+    $kunEmail = "";
     $kunGebDatum = "";
     $kunTelefon = "";
     $ortONRP = "";
+
+} else if (isset($_GET['kunLeer'])){
+    // Leer
+    $kunNummer = "";
+    $kunAnrede = "";
+    $kunVorname = "";
+    $kunNachname = "";
+    $kunStrasse = "";
+    $kunHausnummer = "";
+    $kunEmail = "";
+    $kunGebDatum = "";
+    $kunTelefon = "";
+    $ortONRP = "";
+}else{
+    header('Location: ' . $_SERVER['PHP_SELF'] . '?kunLeer=');
 }
 
 ?>
@@ -130,41 +170,46 @@ if (isset($_GET['kunNummer'])) {
                     <tr>
                         <td>
                             <br>
-                            <div onclick="addUser()">
-                                <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
-
-
+                            <div>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunAdd=' ?>" class="btn"><i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div onclick="editUser()">
+                            <div>
                                 <br>
-                                <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
+                                <button class="btn" type="submit" name="kunEdit" form="kundeForm"><i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></button>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div onclick="deleteUser()">
+                            <div>
                                 <br>
-                                <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLoeschen=' . $kunNummer ?>" class="btn"><i class="fa-solid fa-user-large-slash fa-2xl" style="margin: 5px;"></i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div onclick="dismiss()">
-                                <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
+                            <div>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLeer=' ?>" class="btn"><i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i></a>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <div onclick="done()">
+                            <div>
                                 <br>
-                                <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
+                                <?php
+                                if(isset($_GET['kunAdd'])){
+                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                }else if(isset($_POST['kunEdit'])){
+                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                }
+                                ?>
+                                
                             </div>
                         </td>
                     </tr>
@@ -172,7 +217,7 @@ if (isset($_GET['kunNummer'])) {
             </div>
         </div>
         <div class="kunde">
-            <form action="index.php" method="post">
+            <form id="kundeForm" action="index.php" method="post">
                 <table>
                     <tr>
                         <td>
@@ -180,10 +225,17 @@ if (isset($_GET['kunNummer'])) {
                         </td>
                         <td>
                             <select name="anrede" id="anrede" required>
-                                <option value=""></option>
-                                <option value="Frau">Frau</option>
-                                <option value="Herr">Herr</option>
+                                <option value="" <?php if($kunAnrede == ""){echo "selected";} ?>></option>
+                                <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";} ?>>Frau</option>
+                                <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";} ?>>Herr</option>
                             </select>
+                        </td>
+                         <td>
+                            <label for="id">Kundennr.</label>
+                        </td>
+                        <td>
+                            <label for="id"><?php echo $kunNummer ?></label>
+                            <input type="hidden" id="id" name="id" value="<?php echo $kunNummer ?>">
                         </td>
                     </tr>
                     <tr>
@@ -192,7 +244,7 @@ if (isset($_GET['kunNummer'])) {
 
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required>
+                            <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -200,7 +252,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="nn">Nachname</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required>
+                            <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -208,13 +260,13 @@ if (isset($_GET['kunNummer'])) {
                             <label for="str">Strasse</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required>
+                            <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                         <td>
                             <label for="nr">HausNr.</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="nr" name="nr" value="<?php echo "" ?>" required>
+                            <input type="text" class="form-control" id="nr" name="nr" value="<?php echo $kunHausnummer ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
 
                     </tr>
@@ -223,13 +275,13 @@ if (isset($_GET['kunNummer'])) {
                             <label for="ort">Ort</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required>
+                            <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                         <td>
                             <label for="plz">PLZ</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required>
+                            <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
 
                     </tr>
@@ -238,7 +290,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="eM">E-Mail</label>
                         </td>
                         <td>
-                            <input type="email" class="form-control" id="eM" name="eM" value="<?php echo "" ?>" required>
+                            <input type="email" class="form-control" id="eM" name="eM" value="<?php echo $kunEmail ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -246,7 +298,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="datum">Geburtsdatum</label>
                         </td>
                         <td>
-                            <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required>
+                            <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                     <tr>
@@ -254,11 +306,10 @@ if (isset($_GET['kunNummer'])) {
                             <label for="tele">Telefon</label>
                         </td>
                         <td>
-                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required>
+                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                 </table>
-                <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
             <div class="hl"></div>
             <br>
