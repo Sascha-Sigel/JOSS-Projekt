@@ -124,52 +124,53 @@ if (isset($_GET['kunNummer'])) {
                 </tbody>
             </table>
         </div>
-        <div class="vl"></div>
-        <div class="icon">
-            <table>
-                <tr>
-                    <td>
-                        <br>
-                        <div onclick="addUser()">
-                            <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
+        <div class="vl">
+            <div class="icon">
+                <table>
+                    <tr>
+                        <td>
+                            <br>
+                            <div onclick="addUser()">
+                                <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
 
 
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="editUser()">
-                            <br>
-                            <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="deleteUser()">
-                            <br>
-                            <i class="fa-solid fa-user-large-slash fa-2xl"></i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="dismiss()">
-                            <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="done()">
-                            <br>
-                            <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </div>        
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="editUser()">
+                                <br>
+                                <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="deleteUser()">
+                                <br>
+                                <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="dismiss()">
+                                <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div onclick="done()">
+                                <br>
+                                <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
         <div class="kunde">
             <form action="index.php" method="post">
                 <table>
@@ -262,40 +263,40 @@ if (isset($_GET['kunNummer'])) {
             <div class="hl"></div>
             <br>
             <div class="videos">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Video Name</th>
-                        <th>Videonummer</th>
-                        <th>Ausleihdatum</th>
-                        <th>Rückgabedatum</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if (isset($_GET["kunNummer"])) {
-                        
-                        $sql = "select v.VidTitel, v.VidNummer, a.AusVon, a.AusBis from TKunden k, TVideos v, TAusleihen a where k.KunNummer = a.KunNummer and a.VidNummer = v.VidNummer and k.KunNummer = ". $_GET["kunNummer"] . ";";
-                        $result = $link->query($sql);
-                        
-                        if ($result->num_rows > 0) {
-                            // output data of each row
-                            while ($row = $result->fetch_assoc()) {
-                                echo "  <tr>
-                                            <td>". $row["VidTitel"] . "</td>
-                                            <td>". $row["VidNummer"] . "</td>
-                                            <td>". $row["AusVon"] . "</td>
-                                            <td>". $row["AusBis"] . "</td>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Video Name</th>
+                            <th>Videonummer</th>
+                            <th>Ausleihdatum</th>
+                            <th>Rückgabedatum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (isset($_GET["kunNummer"])) {
+
+                            $sql = "select v.VidTitel, v.VidNummer, a.AusVon, a.AusBis from TKunden k, TVideos v, TAusleihen a where k.KunNummer = a.KunNummer and a.VidNummer = v.VidNummer and k.KunNummer = " . $_GET["kunNummer"] . ";";
+                            $result = $link->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                // output data of each row
+                                while ($row = $result->fetch_assoc()) {
+                                    echo "  <tr>
+                                            <td>" . $row["VidTitel"] . "</td>
+                                            <td>" . $row["VidNummer"] . "</td>
+                                            <td>" . $row["AusVon"] . "</td>
+                                            <td>" . $row["AusBis"] . "</td>
                                         </tr>";
+                                }
                             }
                         }
-                    }
-                    ?>
-                </tbody>
-            </table>
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        </div>
-        
+
 
     </div>
 
