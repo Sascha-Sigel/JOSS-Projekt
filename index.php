@@ -5,8 +5,8 @@ $result = $link->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        print_r($row);
-        echo "<br>";
+        //print_r($row);
+        //echo "<br>";
     }
 }
 
@@ -124,6 +124,7 @@ if (isset($_GET['kunNummer'])) {
                 </tbody>
             </table>
         </div>
+        <div class="vl"></div>
         <div class="icon">
             <table>
                 <tr>
