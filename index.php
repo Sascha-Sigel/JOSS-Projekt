@@ -64,6 +64,9 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     <meta content="#2d89ef" name="msapplication-TileColor">
     <meta content="favicons/browserconfig.xml" name="msapplication-config">
     <meta content="#ffffff" name="theme-color">
+    <title>Google Icons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -81,10 +84,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
         </nav>
         <br>
         <div class="datatable">
-            <?php
-            $arr = array(0 => "Jeannine", 1 => "Ziegler");
-            ?>
+            <!-- zuerst Import -->
+        </div>
+        <div class="vl"></div>
+        <div class="icon">
+            <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
+
                 <thead>
                     <tr>
                         <th>Vorname</th>
@@ -109,11 +115,68 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                 </tbody>
             </table>
 
+                <tr>
+                    <td>
+                        <br>
+                        <div onclick="addUser()">
+                            <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
+
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="editUser()">
+                            <br>
+                            <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="deleteUser()">
+                            <br>
+                            <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="dismiss()">
+                            <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="done()">
+                            <br>
+                            <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <?php
-        error_reporting(0);
+            error_reporting();
+            function addUser(){
+
+            }
+            function editUser(){
+
+            }
+            function deleteUser(){
+
+            }
+            function dismiss(){
+
+            }
+            function done(){
+
+            }
+
         ?>
-        <div class="vl"></div>
         <div class="kunde">
             <table>
                 <tr>
@@ -203,9 +266,12 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
             <button onclick="con.connect()">Click me</button>
             <div id='test'>
             </div>
+
+            <br>
+            <hr>
+
         </div>
-        <br>
-        <hr>
+
     </div>
 
     </div>
