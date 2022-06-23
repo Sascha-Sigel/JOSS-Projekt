@@ -79,6 +79,9 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
     <meta content="#2d89ef" name="msapplication-TileColor">
     <meta content="favicons/browserconfig.xml" name="msapplication-config">
     <meta content="#ffffff" name="theme-color">
+    <title>Google Icons</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 
@@ -96,10 +99,13 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
         </nav>
         <br>
         <div class="datatable">
-            <?php
-            $arr = array(0 => "Jeannine", 1 => "Ziegler");
-            ?>
+            <!-- zuerst Import -->
+        </div>
+        <div class="vl"></div>
+        <div class="icon">
+            <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
+
                 <thead>
                     <tr>
                         <th>Vorname</th>
@@ -108,7 +114,6 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
                 </thead>
                 <tbody>
                 <?php
-                //https://tubemint.com/php-foreach-loop-in-html-table-working/
                     $sql = "SELECT * FROM TKunden";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
@@ -124,8 +129,51 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
                 </tbody>
             </table>
 
+                <tr>
+                    <td>
+                        <br>
+                        <div onclick="addUser()">
+                            <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
+
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="editUser()">
+                            <br>
+                            <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="deleteUser()">
+                            <br>
+                            <i class="fa-solid fa-user-large-slash fa-2xl"></i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="dismiss()">
+                            <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div onclick="done()">
+                            <br>
+                            <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
+                        </div>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div class="vl"></div>
+
         <div class="kunde">
         <form action="index.php" method="post">
             <table>
@@ -216,9 +264,12 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
             <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
             </div>
+
+            <br>
+            <hr>
+
         </div>
-        <br>
-        <hr>
+
     </div>
 
     </div>
