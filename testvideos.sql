@@ -1,6 +1,3 @@
-describe TVideos;
-describe TAusleihen;
-
 INSERT INTO TVideos VALUES
 (null, 'Westfield', '01:41:00', 'Action', '2014', 16, 5.00, 15.00, 1),
 (null, 'Kharkov', '01:41:00', 'Action', '2014', 16, 5.00, 15.00, 1),
@@ -10,8 +7,6 @@ INSERT INTO TVideos VALUES
 (null, 'Stalingrad', '01:41:00', 'Action', '2014', 16, 5.00, 15.00, 1),
 (null, 'El Halluf', '01:41:00', 'Action', '2014', 16, 5.00, 15.00, 1);
 
-select * from TVideos;
-
 INSERT INTO TAusleihen VALUES
 (NULL, now(), '2022-07-30', 1001, 1000),
 (NULL, now(), '2022-07-30', 1002, 1000),
@@ -19,4 +14,12 @@ INSERT INTO TAusleihen VALUES
 (NULL, now(), '2022-07-30', 1004, 1000),
 (NULL, now(), '2022-07-30', 1005, 1000),
 (NULL, now(), '2022-07-30', 1006, 1000),
+(null, now(), '2022-04-20', 1002, 1001),
+(null, now(), '2022-04-20', 1000, 1001),
+(null, now(), '2022-04-20', 1005, 1001),
+(null, now(), '2022-04-20', 1006, 1001),
+(null, now(), '2022-04-20', 1002, 1002),
+(null, now(), '2022-04-20', 1004, 1002),
+(null, now(), '2022-04-20', 1001, 1002),
+(null, now(), '2022-04-20', 1007, 1002),
 (NULL, now(), '2022-07-30', 1007, 1000);
