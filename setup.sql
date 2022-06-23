@@ -9,6 +9,8 @@ Date: 17.06.2022
 
 History:
 Version	Date		Who		Changes
+2.5		23.06.22	SIG		changed to joss_kundenportal
+2.4     23.06.22    SIG     added Hausnummer to TKunden
 2.3		17.06.22	SIG		added test entities
 2.2		17.06.22	SIG		added correct Header
 2.1		17.06.22	SIG		utf8mb4 characters implemented
@@ -19,8 +21,8 @@ Copyright © 2022 JOSS AG, Zürich, Switzerland, All rights reserved.
 ------------------------------------------------------------ */
 
 -- Character set to utf-8 with 4 bytes, so that emojis are implemented
-create database if not exists kundenportal default character set utf8mb4 collate utf8mb4_unicode_ci;
-use kundenportal;
+create database if not exists joss_kundenportal default character set utf8mb4 collate utf8mb4_unicode_ci;
+use joss_kundenportal;
 
 drop table if exists TVideos;
 create table TVideos(
@@ -53,6 +55,7 @@ create table TKunden (
     KunVorname varchar(40) not null,
     KunNachname varchar(40) not null,
     KunStrasse varchar(50) not null,
+    KunHausnummer varchar(4) not null,
     KunEMail varchar(40) not null,
     KunGebDatum date not null,
     KunTelefon char(16) not null,
@@ -70,9 +73,9 @@ create table TOrte (
 -- Testing
 insert into TVideos values(null, 'John Wick', '01:41:00', 'Action', '2014', 16, 5.00, 15.00, 1);
 insert into TAusleihen values(null, now(), '2022-06-23', 1000, 1000);
-insert into TKunden values(null, 'Herr', 'Sascha 👾', 'Sigel', 'Weinfelderstrasse 124b', 'sascha.sigel@stud.kftg.ch', '2004-07-06', '+41 71 411 79 15', 4893);
-insert into TKunden values(null, 'Herr', 'Oliver 👽', 'Wettstein', 'Hohlgasse 4', 'oliver.wettstein@stud.kftg.ch', '2003-03-21', '079 535 31 52', 4893);
-insert into TKunden values(null, 'Frau', 'Jeannnine 🐱‍👤', 'Ziegler', 'Bannaustrasse 10', 'jeannine.ziegler@stud.kftg.ch', '2004-05-30', '076 823 00 14', 4893);
+insert into TKunden values(null, 'Herr', 'Sascha 👾', 'Sigel', 'Weinfelderstrasse', '124b', 'sascha.sigel@stud.kftg.ch', '2004-07-06', '+41 71 411 79 15', 4893);
+insert into TKunden values(null, 'Herr', 'Oliver 👽', 'Wettstein', 'Hohlgasse', '4', 'oliver.wettstein@stud.kftg.ch', '2003-03-21', '079 535 31 52', 4893);
+insert into TKunden values(null, 'Frau', 'Jeannnine 🐱‍👤', 'Ziegler', 'Bannaustrasse', '10', 'jeannine.ziegler@stud.kftg.ch', '2004-05-30', '076 823 00 14', 4893);
 
 insert into TOrte values(4893, 8580, 'Amriswil');
 insert into TOrte values(4876,8570,'Weinfelden');
