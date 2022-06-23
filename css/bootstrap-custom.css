@@ -67,7 +67,8 @@ h1{
 .hl{
   border-top: groove #333;
   width: 100%;
-  position:initial;
+  position:absolute;
+  margin-top: 20px;
   
 }
 
@@ -79,11 +80,9 @@ h1{
 
 .videos{
   position: relative;
-  width: 60%;
+  width: 100%;
   top: 0%;
   margin-top: 20px;
-  left: 0%;
-  margin-left: 15px;
 }
 
 .videos th{

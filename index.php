@@ -259,10 +259,9 @@ if (isset($_GET['kunNummer'])) {
                 </table>
                 <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
-        </div>
-        <div class="hl"></div>
-        <div class="videos">
-            
+            <div class="hl"></div>
+            <br>
+            <div class="videos">
             <table>
                 <thead>
                     <tr>
@@ -295,6 +294,8 @@ if (isset($_GET['kunNummer'])) {
                 </tbody>
             </table>
         </div>
+        </div>
+        
 
     </div>
 
