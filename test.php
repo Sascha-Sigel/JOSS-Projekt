@@ -9,29 +9,6 @@ require_once "config.php";
             echo "<br>";
         }
     }
-
-$kunNummer = 1000;
-if (isset($_GET['kunNummer'])){
-    $kunNummer = $_GET['kunNummer'];
-}
-
-
-//Abfrage nach Kundennummer
-$sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
-    $result = $link->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            $kunAnrede = $row['KunAnrede'];
-            $kunVorname = $row['KunVorname'];
-            $kunNachname = $row['KunNachname'];
-            $kunStrasse = $row['KunStrasse'];
-            $kunGebDatum = $row['KunGebDatum'];
-            $kunTelefon = $row['KunTelefon'];
-            $ortONRP = $row['OrtONRP'];
-        }
-    }
-
 ?>
 <!doctype html>
 
@@ -42,7 +19,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     <!-- Meta tags -->
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-    <meta content="Bootstrap V4.6.0 Template fÃ¼r IMS Frauenfeld" name="description">
+    <meta content="Bootstrap V4.6.0 Template für IMS Frauenfeld" name="description">
     <meta content="Jean-Pierre Mouret" name="author">
 
     <!-- Title -->
@@ -64,9 +41,8 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     <meta content="#2d89ef" name="msapplication-TileColor">
     <meta content="favicons/browserconfig.xml" name="msapplication-config">
     <meta content="#ffffff" name="theme-color">
-    <title>Google Icons</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script type="text/javascript" src="database.js"></script>
 
 </head>
 
@@ -84,99 +60,26 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
         </nav>
         <br>
         <div class="datatable">
-            <!-- zuerst Import -->
-        </div>
-        <div class="vl"></div>
-        <div class="icon">
-            <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
+            <?php
+            $arr = array(0 => "Jeannine", 1 => "Ziegler");
+            ?>
             <table>
-
                 <thead>
                     <tr>
                         <th>Vorname</th>
                         <th>Nachname</th>
                     </tr>
                 </thead>
-                <tbody>
                 <?php
                 //https://tubemint.com/php-foreach-loop-in-html-table-working/
-                    $sql = "SELECT * FROM TKunden";
-                    $result = $link->query($sql);
-                    if ($result->num_rows > 0) {
-                        // output data of each row
-                        while($row = $result->fetch_assoc()) {
-                            echo "  <tr>
-                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunVorname'] . "</a></td>
-                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunNachname'] . "</a></td>
-                                    </tr>";
-                        }
-                    }
                 ?>
-                </tbody>
             </table>
 
-                <tr>
-                    <td>
-                        <br>
-                        <div onclick="addUser()">
-                            <i class="fa-solid fa-user-plus fa-2xl" style="margin: 5px;"></i>
-
-
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="editUser()">
-                            <br>
-                            <i class="fa-solid fa-user-pen fa-2xl" style="margin: 5px;"></i></i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="deleteUser()">
-                            <br>
-                            <i class="fa-solid fa-user-large-slash fa-2xl"></i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="dismiss()">
-                            <i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div onclick="done()">
-                            <br>
-                            <i class="material-icons" style="font-size:40px; margin-top: 80px;">done</i>
-                        </div>
-                    </td>
-                </tr>
-            </table>
         </div>
         <?php
-            error_reporting();
-            function addUser(){
-
-            }
-            function editUser(){
-
-            }
-            function deleteUser(){
-
-            }
-            function dismiss(){
-
-            }
-            function done(){
-
-            }
-
+        error_reporting(0);
         ?>
+        <div class="vl"></div>
         <div class="kunde">
             <table>
                 <tr>
@@ -197,7 +100,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
 
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required>
+                        <input type="text" class="form-control" id="vn" name="vn" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -205,7 +108,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="nn">Nachname</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required>
+                        <input type="text" class="form-control" id="nn" name="nn" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -213,13 +116,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="str">Strasse</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required>
+                        <input type="text" class="form-control" id="str" name="str" value="" required>
                     </td>
                     <td>
                         <label for="nr">HausNr.</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="nr" name="nr" value="<?php echo "" ?>" required>
+                        <input type="text" class="form-control" id="nr" name="nr" value="" required>
                     </td>
 
                 </tr>
@@ -228,13 +131,13 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="ort">Ort</label>
                     </td>
                     <td>
-                        <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required>
+                        <input type="text" class="form-control" id="ort" name="ort" value="" required>
                     </td>
                     <td>
                         <label for="plz">PLZ</label>
                     </td>
                     <td>
-                        <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required>
+                        <input type="number" class="form-control" id="plz" name="plz" value="" required>
                     </td>
 
                 </tr>
@@ -243,7 +146,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="eM">E-Mail</label>
                     </td>
                     <td>
-                        <input type="email" class="form-control" id="eM" name="eM" value="<?php echo "" ?>" required>
+                        <input type="email" class="form-control" id="eM" name="eM" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -251,7 +154,7 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="datum">Geburtsdatum</label>
                     </td>
                     <td>
-                        <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required>
+                        <input type="date" class="form-control" id="datum" name="datum" value="" required>
                     </td>
                 </tr>
                 <tr>
@@ -259,19 +162,17 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                         <label for="tele">Telefon</label>
                     </td>
                     <td>
-                        <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required>
+                        <input type="phone" class="form-control" id="tele" name="tele" value="" required>
                     </td>
                 </tr>
             </table>
-            <button onclick="con.connect()">Click me</button>
+            <button onclick="selectAll()">Click me</button>
             <div id='test'>
             </div>
 
-            <br>
-            <hr>
-
         </div>
-
+        <br>
+        <hr>
     </div>
 
     </div>
