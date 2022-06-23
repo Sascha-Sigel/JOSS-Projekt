@@ -99,7 +99,6 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                 </thead>
                 <tbody>
                 <?php
-                //https://tubemint.com/php-foreach-loop-in-html-table-working/
                     $sql = "SELECT * FROM TKunden";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
