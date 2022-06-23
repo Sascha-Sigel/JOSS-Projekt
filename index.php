@@ -125,7 +125,6 @@ if (isset($_GET['kunNummer'])) {
             </table>
         </div>
         <div class="icon">
-
             <table>
                 <tr>
                     <td>
@@ -262,7 +261,6 @@ if (isset($_GET['kunNummer'])) {
         </div>
 
         <br>
-        <hr>
 
     </div>
 
