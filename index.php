@@ -10,14 +10,11 @@ require_once "config.php";
         }
     }
 
-$kunNummer = 1000;
 if (isset($_GET['kunNummer'])){
+//Kunde Anzeigen
     $kunNummer = $_GET['kunNummer'];
-}
-
-
-//Abfrage nach Kundennummer
-$sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
+    //Abfrage nach Kundennummer
+    $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -31,6 +28,24 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
             $ortONRP = $row['OrtONRP'];
         }
     }
+}else if(isset($_POST['kundeAnlegen'])){
+// Kunde Anlegen
+$sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunGebDatum, KunTelefon, OrtONRP)
+                      VALUES ('" . $_POST['anrede'] ."','". $_POST['vn'] ."','". $_POST['nn'] ."','". $_POST['str'] ."',". $_POST['datum'] .",'". $_POST['tele'] ."',". $_POST['plz'].")";
+                      mysqli_query($link, $sql);
+                      echo $_POST['anrede'] .",". $_POST['vn'] .",". $_POST['nn'] .",". $_POST['str'] .",". $_POST['datum'] .",". $_POST['tele'] .",". $_POST['plz'];
+}else{
+// Weder Noch
+    $kunNummer = "";
+    $kunAnrede = "";
+    $kunVorname = "";
+    $kunNachname = "";
+    $kunStrasse = "";
+    $kunGebDatum = "";
+    $kunTelefon = "";
+    $ortONRP = "";
+
+}
 
 ?>
 <!doctype html>
@@ -110,11 +125,9 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
             </table>
 
         </div>
-        <?php
-        error_reporting(0);
-        ?>
         <div class="vl"></div>
         <div class="kunde">
+        <form action="index.php" method="post">
             <table>
                 <tr>
                     <td>
@@ -122,9 +135,9 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                     </td>
                     <td>
                         <select name="anrede" id="anrede" required>
+                            <option value=""></option>
                             <option value="Frau">Frau</option>
                             <option value="Herr">Herr</option>
-                            <option value=""></option>
                         </select>
                     </td>
                 </tr>
@@ -200,8 +213,8 @@ $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
                     </td>
                 </tr>
             </table>
-            <button onclick="con.connect()">Click me</button>
-            <div id='test'>
+            <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
+            </form>
             </div>
         </div>
         <br>
