@@ -1,24 +1,24 @@
 <?php
 require_once "config.php";
-    $sql = "SELECT * FROM TKunden";
-    $result = $link->query($sql);
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            print_r($row);
-            echo "<br>";
-        }
+$sql = "SELECT * FROM TKunden";
+$result = $link->query($sql);
+if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+        //print_r($row);
+        //echo "<br>";
     }
+}
 
-if (isset($_GET['kunNummer'])){
-//Kunde Anzeigen
+if (isset($_GET['kunNummer'])) {
+    //Kunde Anzeigen
     $kunNummer = $_GET['kunNummer'];
     //Abfrage nach Kundennummer
     $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
-        while($row = $result->fetch_assoc()) {
+        while ($row = $result->fetch_assoc()) {
             $kunAnrede = $row['KunAnrede'];
             $kunVorname = $row['KunVorname'];
             $kunNachname = $row['KunNachname'];
@@ -28,14 +28,14 @@ if (isset($_GET['kunNummer'])){
             $ortONRP = $row['OrtONRP'];
         }
     }
-}else if(isset($_POST['kundeAnlegen'])){
-// Kunde Anlegen
-$sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunGebDatum, KunTelefon, OrtONRP)
-                      VALUES ('" . $_POST['anrede'] ."','". $_POST['vn'] ."','". $_POST['nn'] ."','". $_POST['str'] ."',". $_POST['datum'] .",'". $_POST['tele'] ."',". $_POST['plz'].")";
-                      mysqli_query($link, $sql);
-                      echo $_POST['anrede'] .",". $_POST['vn'] .",". $_POST['nn'] .",". $_POST['str'] .",". $_POST['datum'] .",". $_POST['tele'] .",". $_POST['plz'];
-}else{
-// Weder Noch
+} else if (isset($_POST['kundeAnlegen'])) {
+    // Kunde Anlegen
+    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunGebDatum, KunTelefon, OrtONRP)
+                      VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $_POST['plz'] . ")";
+    mysqli_query($link, $sql);
+    echo $_POST['anrede'] . "," . $_POST['vn'] . "," . $_POST['nn'] . "," . $_POST['str'] . "," . $_POST['datum'] . "," . $_POST['tele'] . "," . $_POST['plz'];
+} else {
+    // Weder Noch
     $kunNummer = "";
     $kunAnrede = "";
     $kunVorname = "";
@@ -44,7 +44,6 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
     $kunGebDatum = "";
     $kunTelefon = "";
     $ortONRP = "";
-
 }
 
 ?>
@@ -99,10 +98,6 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
         </nav>
         <br>
         <div class="datatable">
-            <!-- zuerst Import -->
-        </div>
-        <div class="vl"></div>
-        <div class="icon">
             <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
 
@@ -113,22 +108,25 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
                     </tr>
                 </thead>
                 <tbody>
-                <?php
+                    <?php
                     $sql = "SELECT * FROM TKunden";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
-                        while($row = $result->fetch_assoc()) {
+                        while ($row = $result->fetch_assoc()) {
                             echo "  <tr>
                                         <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunVorname'] . "</a></td>
                                         <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunNachname'] . "</a></td>
                                     </tr>";
                         }
                     }
-                ?>
+                    ?>
                 </tbody>
             </table>
-
+        </div>
+        <div class="vl"></div>
+        <div class="icon">
+            <table>
                 <tr>
                     <td>
                         <br>
@@ -171,106 +169,99 @@ $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, Kun
                     </td>
                 </tr>
             </table>
-        </div>
-        <div class="vl"></div>
-
+        </div>        
         <div class="kunde">
-        <form action="index.php" method="post">
-            <table>
-                <tr>
-                    <td>
-                        <label for="anrede">Anrede</label>
-                    </td>
-                    <td>
-                        <select name="anrede" id="anrede" required>
-                            <option value=""></option>
-                            <option value="Frau">Frau</option>
-                            <option value="Herr">Herr</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="vn">Vorname</label>
+            <form action="index.php" method="post">
+                <table>
+                    <tr>
+                        <td>
+                            <label for="anrede">Anrede</label>
+                        </td>
+                        <td>
+                            <select name="anrede" id="anrede" required>
+                                <option value=""></option>
+                                <option value="Frau">Frau</option>
+                                <option value="Herr">Herr</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="vn">Vorname</label>
 
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="nn">Nachname</label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="str">Strasse</label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required>
-                    </td>
-                    <td>
-                        <label for="nr">HausNr.</label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" id="nr" name="nr" value="<?php echo "" ?>" required>
-                    </td>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="vn" name="vn" value="<?php echo $kunVorname ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="nn">Nachname</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="nn" name="nn" value="<?php echo $kunNachname ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="str">Strasse</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="str" name="str" value="<?php echo $kunStrasse ?>" required>
+                        </td>
+                        <td>
+                            <label for="nr">HausNr.</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="nr" name="nr" value="<?php echo "" ?>" required>
+                        </td>
 
-                </tr>
-                <tr>
-                    <td>
-                        <label for="ort">Ort</label>
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required>
-                    </td>
-                    <td>
-                        <label for="plz">PLZ</label>
-                    </td>
-                    <td>
-                        <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required>
-                    </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ort">Ort</label>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required>
+                        </td>
+                        <td>
+                            <label for="plz">PLZ</label>
+                        </td>
+                        <td>
+                            <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required>
+                        </td>
 
-                </tr>
-                <tr>
-                    <td>
-                        <label for="eM">E-Mail</label>
-                    </td>
-                    <td>
-                        <input type="email" class="form-control" id="eM" name="eM" value="<?php echo "" ?>" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="datum">Geburtsdatum</label>
-                    </td>
-                    <td>
-                        <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label for="tele">Telefon</label>
-                    </td>
-                    <td>
-                        <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required>
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="eM">E-Mail</label>
+                        </td>
+                        <td>
+                            <input type="email" class="form-control" id="eM" name="eM" value="<?php echo "" ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="datum">Geburtsdatum</label>
+                        </td>
+                        <td>
+                            <input type="date" class="form-control" id="datum" name="datum" value="<?php echo $kunGebDatum ?>" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="tele">Telefon</label>
+                        </td>
+                        <td>
+                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required>
+                        </td>
+                    </tr>
+                </table>
+                <input type="submit" name="kundeAnlegen" value="kundeAnlegen">
             </form>
-            </div>
-
-            <br>
-            <hr>
-
         </div>
 
-    </div>
+        <br>
 
     </div>
 

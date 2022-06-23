@@ -46,7 +46,7 @@
         </nav>
         <br>
         <div class="constraction">
-            <header>404 Error</header>
+            <header>Coming soon...</header>
             <p>This part of the website is under constraction.</p>
         </div>
     </div>
