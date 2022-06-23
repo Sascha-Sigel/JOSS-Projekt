@@ -111,15 +111,19 @@ hr{
 }
 
 tr:hover {
-    background: grey;
+    background: lightgrey;
 }
 
 td a {
     display: block;
     padding: 16px;
-    text-decoration: none;
+    color: black;
 }
 
+a:hover {
+    text-decoration: none;
+    color: black;
+}
 
 
 

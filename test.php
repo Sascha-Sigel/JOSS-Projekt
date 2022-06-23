@@ -9,6 +9,13 @@ require_once "config.php";
             echo "<br>";
         }
     }
+    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunGebDatum, KunTelefon, OrtONRP)
+                      VALUES ('Frau','Emma','Watson','Weinfelderstrasse 124b',0420-04-20,'+41 71 411 79 15',4893)";
+      if (mysqli_query($link, $sql)) {
+  echo "New record created successfully";
+} else {
+  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+}
 ?>
 <!doctype html>
 
