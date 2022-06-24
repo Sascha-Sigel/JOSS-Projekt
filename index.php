@@ -283,7 +283,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="plz">PLZ</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="number" min="1000" max="9658" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
 
                     </tr>
