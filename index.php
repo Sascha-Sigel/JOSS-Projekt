@@ -35,7 +35,7 @@ if (isset($_GET['kunNummer'])) {
             $ortONRP = $row['OrtONRP'];
             
             $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
-            VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $ortONRP . ")";
+            VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "','" . $_POST['datum'] . "','" . $_POST['tele'] . "'," . $ortONRP . ")";
 
             if ($link->query($sql) === TRUE) {
                 $last_id = $link->insert_id;
