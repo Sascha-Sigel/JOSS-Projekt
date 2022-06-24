@@ -172,20 +172,20 @@ if (isset($_GET['kunNummer'])) {
 
                 <thead>
                     <tr>
-                        <th>Vorname</th>
                         <th>Nachname</th>
+                        <th>Vorname</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $sql = "SELECT * FROM TKunden";
+                    $sql = "SELECT * FROM TKunden ORDER BY KunNachname ASC;";
                     $result = $link->query($sql);
                     if ($result->num_rows > 0) {
                         // output data of each row
                         while ($row = $result->fetch_assoc()) {
                             echo "  <tr>
-                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunVorname'] . "</a></td>
                                         <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunNachname'] . "</a></td>
+                                        <td><a href='" . $_SERVER['PHP_SELF'] . '?kunNummer=' . $row['KunNummer'] . "'>" . $row['KunVorname'] . "</a></td>
                                     </tr>";
                         }
                     }
@@ -234,9 +234,9 @@ if (isset($_GET['kunNummer'])) {
                                 <br>
                                 <?php
                                 if(isset($_GET['kunAdd'])){
-                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-left: 5px;'>done</i></button>";
                                 }else if(isset($_POST['kunEdit'])){
-                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-left: 5px;'>done</i></button>";
                                 }
                                 ?>
                                 
