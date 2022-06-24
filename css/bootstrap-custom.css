@@ -54,7 +54,7 @@ h1{
 .datatable{
   clear: both;
   float: left;
-  overflow: auto; height: 445px;
+  overflow: auto; height: 575px;
   position: relative;
   left: 0%;
   margin-left: 15px;
@@ -131,6 +131,7 @@ h1{
 
 .videos td{
   border-top: solid black;
+  border-right: solid black;
   padding: 5px;
 }
 
