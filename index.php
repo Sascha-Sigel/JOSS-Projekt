@@ -224,7 +224,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="anrede">Anrede</label>
                         </td>
                         <td>
-                            <select name="anrede" id="anrede" required >
+                            <select name="anrede" id="anrede">
                                 <option value="" <?php if($kunAnrede == ""){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>></option>
                                 <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Frau</option>
                                 <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Herr</option>
