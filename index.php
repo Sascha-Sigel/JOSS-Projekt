@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+error_reporting(0);
 
 if (isset($_GET['kunNummer'])) {
     //Kunde Anzeigen
@@ -42,25 +43,27 @@ if (isset($_GET['kunNummer'])) {
                 header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
             }
         }
-    } else {
-        echo '<script>alert("PLZ und Ort stimmen nicht überein")</script>';
+    }else{
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=&error=1');
     }
+    
 
 } else if (isset($_POST['kunUpdate'])) {
-    // Kunde Update
-    //OrtONRP    
+    //Kunde Update
+    // OrtONRP    
     $sql = "select OrtONRP from TOrtschaftenCH where OrtPLZ = " . $_POST['plz'] . " and OrtName = '" . $_POST['ort'] ."'";
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
-        // output data of each row
+        //output data of each row
         while ($row = $result->fetch_assoc()) {
             $ortONRP = $row['OrtONRP'];
         }
-    }
-    $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $ortONRP . "' WHERE KunNummer=" . $_POST['id'] ."";
-
-    if ($link->query($sql) === TRUE) {
-        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id']);
+        $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $ortONRP . "' WHERE KunNummer=" . $_POST['id'] ."";
+        if ($link->query($sql) === TRUE) {
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id'] . '&error=0');
+        }
+    }else{
+        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id'] . '&error=1');
     }
 
 } else if (isset($_GET['kunLoeschen'])) {
@@ -153,6 +156,17 @@ if (isset($_GET['kunNummer'])) {
 </head>
 
 <body>
+
+    <?php
+        
+    if (isset($_GET['error'])) {
+        // Error Kunde Anlegen
+        if ($_GET['error'] == 1) {
+            echo '<script>alert("Postleitzahl und Ort stimmen nicht überrein.");</script>';
+        }
+    }
+    
+    ?>
 
     <div class="container">
         <h1>Kunden</h1>
