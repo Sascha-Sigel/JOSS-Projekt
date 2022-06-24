@@ -62,7 +62,7 @@ h1{
   border: solid black; 
 }
 
-.datatable thead th{
+.datatable th{
   position: sticky; top: 0; z-index: 1;
   border-bottom: solid black;
   background-color: lightgray;
@@ -81,7 +81,7 @@ h1{
 }
 .vl{
   border-left: groove #333;
-  height: 85%;
+  height: 80%;
   position: absolute;
   left: 30%;
   top: 1;
@@ -108,6 +108,7 @@ h1{
   
 }
 
+
 .videos{
   overflow: auto; height: 165px;
   position: relative;
@@ -121,7 +122,7 @@ h1{
   border-collapse: collapse; width: 100%;
 }
 
-.videos thead th{
+.videos th{
   position: sticky; top: 0; z-index: 1;
   background-color: lightgray;
   padding-left: 5px;
@@ -171,10 +172,6 @@ input {
 
 label{
   margin: 10px;
-}
-
-table{
-  width:100%;
 }
 
 hr{
