@@ -131,8 +131,8 @@ if (isset($_GET['kunNummer'])) {
         <nav>
             <ul>
                 <li><a class="active" href="index.php">Kunden</a></li>
-                <li><a href="videos.php">Videos</a></li>
-                <li><a href="ausleihen.php">Ausleihen</a></li>
+                <li><a class="not-active" href="videos.php">Videos</a></li>
+                <li><a class="not-active" href="ausleihen.php">Ausleihen</a></li>
             </ul>
             <div class="hl1"></div>
         </nav>
