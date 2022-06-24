@@ -5,7 +5,7 @@ if (isset($_GET['kunNummer'])) {
     //Kunde Anzeigen
     $kunNummer = $_GET['kunNummer'];
     //Abfrage nach Kundennummer
-    $sql = "SELECT * FROM TKunden where kunNummer=" . $kunNummer;
+    $sql = "SELECT * FROM TKunden k, TOrtschaftenCH o WHERE kunNummer=" . $kunNummer . " AND k.OrtONRP = o.OrtONRP";
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
         // output data of each row
@@ -19,22 +19,45 @@ if (isset($_GET['kunNummer'])) {
             $kunGebDatum = $row['KunGebDatum'];
             $kunTelefon = $row['KunTelefon'];
             $ortONRP = $row['OrtONRP'];
+            $ortName = $row['OrtName'];
+            $ortPLZ = $row['OrtPLZ'];
         }
     }
 } else if (isset($_POST['kunInsert'])) {
     // Kunde Anlegen
-    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
-                      VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $_POST['plz'] . ")";
+    //OrtONRP    
+    $sql = "select OrtONRP from TOrtschaftenCH where OrtPLZ = " . $_POST['plz'] . " and OrtName = '" . $_POST['ort'] ."'";
+    $result = $link->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $ortONRP = $row['OrtONRP'];
+            
+            $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
+            VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $ortONRP . ")";
 
-    if ($link->query($sql) === TRUE) {
-        $last_id = $link->insert_id;
-        echo $last_id;
-        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
+            if ($link->query($sql) === TRUE) {
+                $last_id = $link->insert_id;
+                echo $last_id;
+                header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
+            }
+        }
+    } else {
+        echo '<script>alert("PLZ und Ort stimmen nicht überein")</script>';
     }
 
 } else if (isset($_POST['kunUpdate'])) {
     // Kunde Update
-    $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $_POST['plz'] . "' WHERE KunNummer=" . $_POST['id'] ."";
+    //OrtONRP    
+    $sql = "select OrtONRP from TOrtschaftenCH where OrtPLZ = " . $_POST['plz'] . " and OrtName = '" . $_POST['ort'] ."'";
+    $result = $link->query($sql);
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+            $ortONRP = $row['OrtONRP'];
+        }
+    }
+    $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $ortONRP . "' WHERE KunNummer=" . $_POST['id'] ."";
 
     if ($link->query($sql) === TRUE) {
         header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id']);
@@ -56,7 +79,8 @@ if (isset($_GET['kunNummer'])) {
     $kunEmail = $_POST['eM'];
     $kunGebDatum = $_POST['datum'];
     $kunTelefon = $_POST['tele'];
-    $ortONRP = $_POST['plz'];
+    $ortName = $_POST['ort'];
+    $ortPLZ = $_POST['plz'];
 
 } else if (isset($_GET['kunAdd'])){
     $kunNummer = "";
@@ -69,6 +93,8 @@ if (isset($_GET['kunNummer'])) {
     $kunGebDatum = "";
     $kunTelefon = "";
     $ortONRP = "";
+    $ortName = "";
+    $ortPLZ = "";
 
 } else if (isset($_GET['kunLeer'])){
     // Leer
@@ -82,6 +108,8 @@ if (isset($_GET['kunNummer'])) {
     $kunGebDatum = "";
     $kunTelefon = "";
     $ortONRP = "";
+    $ortName = "";
+    $ortPLZ = "";
 }else{
     header('Location: ' . $_SERVER['PHP_SELF'] . '?kunLeer=');
 }
@@ -279,13 +307,13 @@ if (isset($_GET['kunNummer'])) {
                             <label for="ort">Ort</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="text" class="form-control" id="ort" name="ort" value="<?php echo $ortName ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                         <td>
                             <label for="plz">PLZ</label>
                         </td>
                         <td>
-                            <input type="number" min="1000" max="9658" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="number" min="1000" max="9658" class="form-control" id="plz" name="plz" value="<?php echo $ortPLZ ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
 
                     </tr>
@@ -317,39 +345,42 @@ if (isset($_GET['kunNummer'])) {
             </form>
             <div class="hl2"></div>
             <br>
-            <div class="videos">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Video Name</th>
-                            <th>Videonummer</th>
-                            <th>Ausleihdatum</th>
-                            <th>Rückgabedatum</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if (isset($_GET["kunNummer"])) {
+            <?php
+                if (isset($_GET["kunNummer"])) {
+                echo "
+                    <div class='videos'>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Video Name</th>
+                                    <th>Videonummer</th>
+                                    <th>Ausleihdatum</th>
+                                    <th>Rückgabedatum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        
+                            ";
+                                    $sql = "select v.VidTitel, v.VidNummer, a.AusVon, a.AusBis from TKunden k, TVideos v, TAusleihen a where k.KunNummer = a.KunNummer and a.VidNummer = v.VidNummer and k.KunNummer = " . $_GET["kunNummer"] . ";";
+                                    $result = $link->query($sql);
 
-                            $sql = "select v.VidTitel, v.VidNummer, a.AusVon, a.AusBis from TKunden k, TVideos v, TAusleihen a where k.KunNummer = a.KunNummer and a.VidNummer = v.VidNummer and k.KunNummer = " . $_GET["kunNummer"] . ";";
-                            $result = $link->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                // output data of each row
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "  <tr>
-                                            <td>" . $row["VidTitel"] . "</td>
-                                            <td>" . $row["VidNummer"] . "</td>
-                                            <td>" . $row["AusVon"] . "</td>
-                                            <td>" . $row["AusBis"] . "</td>
-                                        </tr>";
+                                    if ($result->num_rows > 0) {
+                                        // output data of each row
+                                        while ($row = $result->fetch_assoc()) {
+                                            echo "  <tr>
+                                                    <td>" . $row["VidTitel"] . "</td>
+                                                    <td>" . $row["VidNummer"] . "</td>
+                                                    <td>" . $row["AusVon"] . "</td>
+                                                    <td>" . $row["AusBis"] . "</td>
+                                                </tr>";
+                                        }
+                                    }
                                 }
-                            }
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+                            echo "
+                            </tbody>
+                        </table>
+                    </div>
+                "; ?>
         </div>
 
 
