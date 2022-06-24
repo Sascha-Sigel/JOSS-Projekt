@@ -1,5 +1,6 @@
 <?php
 require_once "config.php";
+error_reporting(0);
 
 if (isset($_GET['kunNummer'])) {
     //Kunde Anzeigen
@@ -33,31 +34,35 @@ if (isset($_GET['kunNummer'])) {
         while ($row = $result->fetch_assoc()) {
             $ortONRP = $row['OrtONRP'];
         }
-    }
-    $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
+        $sql = "INSERT INTO TKunden (KunAnrede, KunVorname, KunNachname, KunStrasse, KunHausnummer, KunEMail, KunGebDatum, KunTelefon, OrtONRP)
                       VALUES ('" . $_POST['anrede'] . "','" . $_POST['vn'] . "','" . $_POST['nn'] . "','" . $_POST['str'] . "','" . $_POST['nr'] . "','" . $_POST['eM'] . "'," . $_POST['datum'] . ",'" . $_POST['tele'] . "'," . $ortONRP . ")";
 
-    if ($link->query($sql) === TRUE) {
-        $last_id = $link->insert_id;
-        echo $last_id;
-        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
+        if ($link->query($sql) === TRUE) {
+            $last_id = $link->insert_id;
+            echo $last_id;
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $last_id);
+        }
+    }else{
+        echo "Ihre Postleitzahl stimmt nicht mit dem Ort überrein.";
     }
+    
 
 } else if (isset($_POST['kunUpdate'])) {
-    // Kunde Update
+    //Kunde Update
     //OrtONRP    
     $sql = "select OrtONRP from TOrtschaftenCH where OrtPLZ = " . $_POST['plz'] . " and OrtName = '" . $_POST['ort'] ."'";
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
-        // output data of each row
+        //output data of each row
         while ($row = $result->fetch_assoc()) {
             $ortONRP = $row['OrtONRP'];
         }
-    }
-    $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $ortONRP . "' WHERE KunNummer=" . $_POST['id'] ."";
-
-    if ($link->query($sql) === TRUE) {
-        header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id']);
+        $sql = "UPDATE TKunden SET KunAnrede='" . $_POST['anrede'] . "',KunVorname='" . $_POST['vn'] . "',KunNachname='" . $_POST['nn'] . "',KunStrasse='" . $_POST['str'] . "',KunHausnummer='" . $_POST['nr'] . "',KunEMail='" . $_POST['eM'] . "',KunGebDatum='" . $_POST['datum'] . "',KunTelefon='" . $_POST['tele'] . "',OrtONRP='" . $ortONRP . "' WHERE KunNummer=" . $_POST['id'] ."";
+        if ($link->query($sql) === TRUE) {
+            header('Location: ' . $_SERVER['PHP_SELF'] . '?kunNummer=' . $_POST['id']);
+        }
+    }else{
+        echo "Ihre Postleitzahl stimmt nicht mit dem Ort überrein.";
     }
 
 } else if (isset($_GET['kunLoeschen'])) {
