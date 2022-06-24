@@ -137,6 +137,7 @@ if (isset($_GET['kunNummer'])) {
             <div class="hl1"></div>
         </nav>
         <br>
+        <div class="fix">
         <div class="datatable">
             <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
@@ -163,6 +164,7 @@ if (isset($_GET['kunNummer'])) {
                     ?>
                 </tbody>
             </table>
+        </div>
         </div>
         <div class="vl">
             <div class="icon">
