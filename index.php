@@ -49,7 +49,7 @@ if (isset($_GET['kunNummer'])) {
 
 } else if (isset($_POST['kunUpdate'])) {
     //Kunde Update
-    //OrtONRP    
+    // OrtONRP    
     $sql = "select OrtONRP from TOrtschaftenCH where OrtPLZ = " . $_POST['plz'] . " and OrtName = '" . $_POST['ort'] ."'";
     $result = $link->query($sql);
     if ($result->num_rows > 0) {
