@@ -36,13 +36,13 @@
 
     <div class="container">
         <h1>Videos</h1>
-        <hr>
         <nav>
             <ul>
-                <li><a href="index.php">Kunden</a></li>
+                <li><a class="not-active" href="index.php">Kunden</a></li>
                 <li><a class="active" href="videos.php">Videos</a></li>
-                <li><a href="ausleihen.php">Ausleihen</a></li>
+                <li><a class="not-active"href="ausleihen.php">Ausleihen</a></li>
             </ul>
+            <div class="hl1"></div>
         </nav>
         <br>
         <div class="constraction">

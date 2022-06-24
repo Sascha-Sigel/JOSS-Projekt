@@ -128,15 +128,16 @@ if (isset($_GET['kunNummer'])) {
 
     <div class="container">
         <h1>Kunden</h1>
-        <hr>
         <nav>
             <ul>
                 <li><a class="active" href="index.php">Kunden</a></li>
-                <li><a href="videos.php">Videos</a></li>
-                <li><a href="ausleihen.php">Ausleihen</a></li>
+                <li><a class="not-active" href="videos.php">Videos</a></li>
+                <li><a class="not-active" href="ausleihen.php">Ausleihen</a></li>
             </ul>
+            <div class="hl1"></div>
         </nav>
         <br>
+        <div class="fix">
         <div class="datatable">
             <script src="https://kit.fontawesome.com/9b1654f543.js" crossorigin="anonymous"></script>
             <table>
@@ -163,6 +164,7 @@ if (isset($_GET['kunNummer'])) {
                     ?>
                 </tbody>
             </table>
+        </div>
         </div>
         <div class="vl">
             <div class="icon">
@@ -194,7 +196,7 @@ if (isset($_GET['kunNummer'])) {
                     <tr>
                         <td>
                             <div>
-                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLeer=' ?>" class="btn"><i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i></a>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLeer=' ?>" class="btn"><i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 10px;">not_interested</i></a>
                             </div>
                         </td>
                     </tr>
@@ -204,9 +206,9 @@ if (isset($_GET['kunNummer'])) {
                                 <br>
                                 <?php
                                 if(isset($_GET['kunAdd'])){
-                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
                                 }else if(isset($_POST['kunEdit'])){
-                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
                                 }
                                 ?>
                                 
@@ -224,11 +226,13 @@ if (isset($_GET['kunNummer'])) {
                             <label for="anrede">Anrede</label>
                         </td>
                         <td>
-                            <select name="anrede" id="anrede" required>
-                                <option value="" <?php if($kunAnrede == ""){echo "selected";} ?>></option>
-                                <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";} ?>>Frau</option>
-                                <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";} ?>>Herr</option>
+                            <select name="anrede" id="anrede">
+                                <option value="" <?php if($kunAnrede == ""){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>></option>
+                                <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Frau</option>
+                                <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Herr</option>
                             </select>
+
+                            <input type="hidden" id="anrede" name="id" value="<?php echo $kunNummer ?>">
                         </td>
                          <td>
                             <label for="id">Kundennr.</label>
@@ -281,7 +285,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="plz">PLZ</label>
                         </td>
                         <td>
-                            <input type="number" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="number" min="1000" max="9658" class="form-control" id="plz" name="plz" value="<?php echo $ortONRP ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
 
                     </tr>
@@ -306,12 +310,12 @@ if (isset($_GET['kunNummer'])) {
                             <label for="tele">Telefon</label>
                         </td>
                         <td>
-                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="tel" class="form-control" id="tele" name="tele" pattern="^(?:0|\(?\+41\)?\s?|0041\s?)(21|22|24|26|27|31|32|33|34|41|43|44|51|52|55|56|58|61|62|71|74|76|77|78|79|81|91)(?:[\.\-\s]?\d\d\d)(?:[\.\-\s]?\d\d){2}$" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                 </table>
             </form>
-            <div class="hl"></div>
+            <div class="hl2"></div>
             <br>
             <div class="videos">
                 <table>
