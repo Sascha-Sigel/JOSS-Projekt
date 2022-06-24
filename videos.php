@@ -47,7 +47,7 @@
         <br>
         <div class="constraction">
             <header>Coming soon...</header>
-            <p>This part of the website is under constraction.</p>
+            <p>This part of the application is under constraction.</p>
         </div>
     </div>
 
