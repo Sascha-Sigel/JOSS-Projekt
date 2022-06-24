@@ -224,11 +224,13 @@ if (isset($_GET['kunNummer'])) {
                             <label for="anrede">Anrede</label>
                         </td>
                         <td>
-                            <select name="anrede" id="anrede" required>
-                                <option value="" <?php if($kunAnrede == ""){echo "selected";} ?>></option>
-                                <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";} ?>>Frau</option>
-                                <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";} ?>>Herr</option>
+                            <select name="anrede" id="anrede" required >
+                                <option value="" <?php if($kunAnrede == ""){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>></option>
+                                <option value="Frau" <?php if($kunAnrede == "Frau"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Frau</option>
+                                <option value="Herr" <?php if($kunAnrede == "Herr"){echo "selected";}else if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "disabled";} ?>>Herr</option>
                             </select>
+
+                            <input type="hidden" id="anrede" name="id" value="<?php echo $kunNummer ?>">
                         </td>
                          <td>
                             <label for="id">Kundennr.</label>
@@ -306,7 +308,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="tele">Telefon</label>
                         </td>
                         <td>
-                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="tel" class="form-control" id="tele" name="tele" pattern="^(?:0|\(?\+41\)?\s?|0041\s?)(21|22|24|26|27|31|32|33|34|41|43|44|51|52|55|56|58|61|62|71|74|76|77|78|79|81|91)(?:[\.\-\s]?\d\d\d)(?:[\.\-\s]?\d\d){2}$" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                 </table>
