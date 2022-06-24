@@ -306,7 +306,7 @@ if (isset($_GET['kunNummer'])) {
                             <label for="tele">Telefon</label>
                         </td>
                         <td>
-                            <input type="tel" class="form-control" id="tele" name="tele" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                 </table>
