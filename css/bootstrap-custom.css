@@ -32,6 +32,7 @@ p{
 
 .active{
   background-color: darkgray;
+  border: 
 }
 
 h1{
@@ -64,7 +65,13 @@ h1{
   top: 1;
 }
 
-.hl{
+.hl1{
+  border-top: groove #333;
+  width: 100%;
+  position:absolute;
+}
+
+.hl2{
   border-top: groove #333;
   width: 100%;
   position:absolute;
@@ -101,12 +108,12 @@ h1{
   
 }
 
+
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: gainsboro;
 }
 
 li {

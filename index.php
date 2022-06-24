@@ -128,13 +128,13 @@ if (isset($_GET['kunNummer'])) {
 
     <div class="container">
         <h1>Kunden</h1>
-        <hr>
         <nav>
             <ul>
                 <li><a class="active" href="index.php">Kunden</a></li>
                 <li><a href="videos.php">Videos</a></li>
                 <li><a href="ausleihen.php">Ausleihen</a></li>
             </ul>
+            <div class="hl1"></div>
         </nav>
         <br>
         <div class="datatable">
@@ -194,7 +194,7 @@ if (isset($_GET['kunNummer'])) {
                     <tr>
                         <td>
                             <div>
-                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLeer=' ?>" class="btn"><i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 5px;">not_interested</i></a>
+                                <a href="<?php echo $_SERVER['PHP_SELF'] . '?kunLeer=' ?>" class="btn"><i class="material-icons" style="font-size:32px; margin-top: 20px; margin-left: 10px;">not_interested</i></a>
                             </div>
                         </td>
                     </tr>
@@ -204,9 +204,9 @@ if (isset($_GET['kunNummer'])) {
                                 <br>
                                 <?php
                                 if(isset($_GET['kunAdd'])){
-                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunInsert' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
                                 }else if(isset($_POST['kunEdit'])){
-                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px;'>done</i></button>";
+                                    echo "<button class='btn' type='submit'  name='kunUpdate' form='kundeForm'><i class='material-icons' style='font-size:40px; margin-top: 80px; margin-left: 5px;'>done</i></button>";
                                 }
                                 ?>
                                 
@@ -306,12 +306,12 @@ if (isset($_GET['kunNummer'])) {
                             <label for="tele">Telefon</label>
                         </td>
                         <td>
-                            <input type="phone" class="form-control" id="tele" name="tele" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
+                            <input type="tel" class="form-control" id="tele" name="tele" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="<?php echo $kunTelefon ?>" required <?php if(!(isset($_POST['kunEdit']) || isset($_GET['kunAdd']))){echo "readonly";} ?>>
                         </td>
                     </tr>
                 </table>
             </form>
-            <div class="hl"></div>
+            <div class="hl2"></div>
             <br>
             <div class="videos">
                 <table>
